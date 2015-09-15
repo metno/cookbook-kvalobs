@@ -2,7 +2,7 @@
 
 @test "That the firewall is disabled" {
     ufw status | {
-        run  grep -E '^Status: +inactive'
+        run  grep -E '^Status: +active'
         [ $status -eq 0 ]
     }
 }

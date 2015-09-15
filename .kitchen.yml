@@ -11,11 +11,9 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[met-server]
-    attributes: {
-      "met-server": {
-        "firewall": {
-          "enabled": false
-        }
-      }
-    }
+      - recipe[met-kvalobs::default]
+      - recipe[met-kvalobs::corba]
+      - recipe[met-kvalobs::kvalobs]
+      - recipe[met-kvalobs::postgres]
+    attributes:
+  
