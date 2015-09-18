@@ -20,6 +20,18 @@
       [ "$status" -eq 0 ]
 }
 
+@test "kvAgregated is running" {
+      run pgrep kvAgregated
+      [ "$status" -eq 0 ]
+}
+
+@test "kvAgregated managed to create database" {
+      run su kvalobs -c "test -w /var/lib/kvagregated/database.sqlite"
+      [ "$status" -eq 0 ]
+}
+
+
+
 @test "kvalobs.conf exists" {
       run ls /etc/kvalobs/kvalobs.conf
       [ "$status" -eq 0 ]
