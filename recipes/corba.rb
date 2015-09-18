@@ -9,7 +9,7 @@ template '/etc/omniORB.cfg' do
   mode '0664'
 end
 
-firewall_rule 'allow all trafic comming from met.no' do
+firewall_rule 'allow all trafic coming from met.no' do
   source    '157.249.0.0/16' 
   protocol :tcp
   action  :allow

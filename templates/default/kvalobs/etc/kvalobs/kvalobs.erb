@@ -1,0 +1,62 @@
+#konfigurasjonsfil for kvalobs
+#loglevel=debug
+loglevel=warn
+
+corba{
+  #Where is CORBA nameserver
+  nameserver="<%= node['met-kvalobs']['corba']['nameserver']['host']%>"
+
+  #Which path in CORBA nameserver shall we use for
+  #this instance of kvalobs
+  path="<%= node['met-kvalobs']['corba']['nameserver']['path']%>"
+}
+
+database{
+  set_app_name=true
+
+  #Which database driver shall be used.
+  dbdriver="pgdriver.so"
+
+  #The string to be used to connect to the database.
+  #ex. for a postgresql database
+  dbconnect="user=<%= node['met-kvalobs']['kvalobsdb']['user']%> dbname=<%= node['met-kvalobs']['kvalobsdb']['dbname']%> host=<%= node['met-kvalobs']['kvalobsdb']['host']%> port=<%= node['met-kvalobs']['kvalobsdb']['port']%>  password=<%= node['met-kvalobs']['kvalobsdb']['password']%> "
+
+}
+
+kvManagerd{
+#  check_for_missing_obs=false
+  check_for_missing_obs=true
+}
+
+kvDataInputd{
+  logfile_info=(2,200k)
+
+  KlDataDecoder {
+    set_useinfo7=true
+  }
+
+  SynopDecoder {
+    hshs_in_meter=true
+  }
+
+  ExecDecoder {
+    loglevel=info
+    aexecd=("localhost", 6666)
+    bindir="/metno/kvalobs/bin"
+    decoders {
+       bufr {
+           timeout=60
+           decoder="BufrDecode.pl"
+           decoderarg="--bufrtables /usr/share/kvbufrd/bufrtables"
+           keep_decoder_logs=true
+           keep_file_to_decode=false
+           keep_kvdata_file=false
+       }
+    }
+  }
+}
+
+
+kvQabased{
+
+}
