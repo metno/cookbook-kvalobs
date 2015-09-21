@@ -2,7 +2,7 @@
 default['met-kvalobs']['kvalobs']['version'] = '2.7.7-1'
 
 # User to run kvalobs programs
-default['met-kvalobs']['user'] = 'kvalobs'
+default['met-kvalobs']['kvalobsuser'] = 'kvalobs'
 
 # kvalobs-db connection info
 default['met-kvalobs']['kvalobsdb'] = {
@@ -14,7 +14,7 @@ default['met-kvalobs']['kvalobsdb'] = {
 }
 
 default['met-kvalobs']['packages'] = {
-    'kvalobs'                       => '2.7.7~rc1-1',
+    'kvalobs'                       => '2.7.7-1',
     'kvagregated'                   => '2.2.12-1'
 #    'norcom2kv'                     => '2.4.5-1',
 #    'kvalobs-log-mailer'            => '0.12-1',

@@ -13,7 +13,8 @@ suites:
     run_list:
       - recipe[met-kvalobs::default]
       - recipe[met-kvalobs::corba]
-      - recipe[met-kvalobs::kvalobs]
       - recipe[met-kvalobs::postgres]
+      - recipe[met-kvalobs::kvalobs-database]
+      - recipe[met-kvalobs::kvalobs]
     attributes:
   

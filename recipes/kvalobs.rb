@@ -1,5 +1,8 @@
 # Install kvalobs packages
 
+kvuser = node['met-kvalobs']['kvalobsuser']
+
+
 node.set['ulimit']['params']['kvalobs']['nofile'] = 8192 # open file limit for the kvalobs user
 
 include_recipe 'ulimit2::default'    
@@ -32,5 +35,5 @@ template '/etc/kvalobs/kv_ctl.conf' do
 end
 
 execute 'kvstart' do
-  command 'sudo -ukvalobs /usr/bin/kvstart'
+  command "sudo -u#{kvuser} /usr/bin/kvstart"
 end
