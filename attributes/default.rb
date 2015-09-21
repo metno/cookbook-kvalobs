@@ -1,6 +1,15 @@
  # Which version of kvalobs to deploy
 default['met-kvalobs']['kvalobs']['version'] = '2.7.7-1'
 
+
+default['met-kvalobs']['stinfosysdb'] = {
+    'host'   => 'localhost',
+    'port'   => 5432,
+    'user'   => 'pstinfosys',
+    'dbname' => 'stinfosys',
+    'password' => ''
+}
+
 # User to run kvalobs programs
 default['met-kvalobs']['kvalobsuser'] = 'kvalobs'
 
@@ -27,9 +36,13 @@ default['met-kvalobs']['packages'] = {
 #    'kvbufrd'                       => '1.1.9-1'
 }
 
-default['met-kvalobs']['corba']['endPointPublish'] = '1.2.3.4'
-default['met-kvalobs']['corba']['nameserver']['host'] = 'corbans.met.no'
+
+default['met-kvalobs']['corba']['nameserver']['host'] = 'localhost'
 default['met-kvalobs']['corba']['nameserver']['port'] = '2809'
 default['met-kvalobs']['corba']['nameserver']['path'] = 'kvalobs-test'
+default['met-kvalobs']['corba']['endPointPublish'] = ''
+default['met-kvalobs']['corba']['install']['nameserver'] = (node['met-kvalobs']['corba']['nameserver']['host'].eql? "localhost")?true:false
 
 default['met-server']['apt']['devel'] = false
+
+default['ulimit']['params']['kvalobs']['nofile'] = 8192 # open file limit for the kvalobs user

@@ -794,8 +794,10 @@ bootstrapAgentPort = 900
 #    they are filled in with the details from each listening TCP/SSL
 #    endpoint. This can be used to publish a different name for a
 #    TCP/SSL endpoint that is using an ephemeral port.
-endPointPublish = giop:tcp:<%= node['met-kvalobs']['corba']['endPointPublish'] %>:
 
+<% if @publishIp.length > 0 -%>
+endPointPublish = giop:tcp:<%= @publishIp %>:
+<% end -%>
 
 ############################################################################
 # serverTransportRule

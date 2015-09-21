@@ -11,10 +11,24 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[met-server::default]
+      - recipe[ulimit2::default]
       - recipe[met-kvalobs::default]
+      - recipe[met-kvalobs::kvusers]
       - recipe[met-kvalobs::corba]
       - recipe[met-kvalobs::postgres]
       - recipe[met-kvalobs::kvalobs-database]
       - recipe[met-kvalobs::kvalobs]
-    attributes:
+    attributes: {
+      "met-kvalobs": {
+        "corba": {
+          "endPointPublish": ""
+        },
+        "met-server": {
+          "apt": {
+            "devel":  true
+          }
+        }
+      }
+    }
   
