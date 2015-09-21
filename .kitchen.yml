@@ -19,6 +19,13 @@ suites:
       - recipe[met-kvalobs::postgres]
       - recipe[met-kvalobs::kvalobs-database]
       - recipe[met-kvalobs::kvalobs]
+      - recipe[met-kvalobs::postgres]
+    attributes:
+    attributes:
+  - name: database
+    run_list:
+      - recipe[met-kvalobs::postgres]
+    attributes:
     attributes: {
       "met-kvalobs": {
         "corba": {

@@ -45,4 +45,43 @@ default['met-kvalobs']['corba']['install']['nameserver'] = (node['met-kvalobs'][
 
 default['met-server']['apt']['devel'] = false
 
+#
+# Database setup for PostgreSQL
+#
+default['postgresql']['enable_pgdg_apt'] = true
+default['postgresql']['version']  =                     "9.4"
+# Following is required to override version config in postgresql recipe
+default['postgresql']['dir'] =                          "/etc/postgresql/#{default['postgresql']['version']}/main"
+default['postgresql']['client']['packages'] =           ["postgresql-client-#{default['postgresql']['version']}", "libpq-dev"]
+default['postgresql']['server']['packages'] =           ["postgresql-#{default['postgresql']['version']}"]
+default['postgresql']['contrib']['packages'] =          ["postgresql-contrib-#{default['postgresql']['version']}"]
+default['postgresql']['config']['data_directory'] =     "/var/lib/postgresql/#{default['postgresql']['version']}/main"
+default['postgresql']['config']['hba_file'] =           "/etc/postgresql/#{default['postgresql']['version']}/main/pg_hba.conf"
+default['postgresql']['config']['ident_file'] =         "/etc/postgresql/#{default['postgresql']['version']}/main/pg_ident.conf"
+default['postgresql']['config']['external_pid_file'] =  "/var/run/postgresql/#{default['postgresql']['version']}-main.pid"
+
+# Performance tuning for PostgreSQL.
+# See https://github.com/hw-cookbooks/postgresql/blob/develop/recipes/config_pgtune.rb:
+force_default['postgresql']['config_pgtune']['db_type'] = 'oltp'
+force_default['postgresql']['config']['listen_addresses'] = '0.0.0.0'
+
+# Setup authentication
+default['postgresql']['pg_hba'] = [
+    {
+        :comment    => "# Peer authentication for local logins",
+        :type       => "local",
+        :db         => "all",
+        :user       => "all",
+        :addr       => "",
+        :method     => "peer",
+    },
+    {
+        :comment    => "# Local logins with password, required for Chef management of database users",
+        :type       => "host",
+        :db         => "all",
+        :user       => "postgres",
+        :addr       => "127.0.0.1/8",
+        :method     => "md5",
+    }
+]
 default['ulimit']['params']['kvalobs']['nofile'] = 8192 # open file limit for the kvalobs user

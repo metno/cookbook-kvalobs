@@ -8,4 +8,5 @@ version             '0.1.0'
 
 depends             'met-server', '~> 0.57.3'
 depends             'ulimit2',    '~> 0.2.0'
-depends             'sysctl',     '~> 0.6'
+depends             'sysctl',     '~> 0.6.2'
+depends             'postgresql', '~> 3.4.20'
