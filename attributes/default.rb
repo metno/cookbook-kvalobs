@@ -24,16 +24,15 @@ default['met-kvalobs']['kvalobsdb'] = {
 
 default['met-kvalobs']['packages'] = {
     'kvalobs'                       => '2.7.7-1',
-    'kvagregated'                   => '2.2.12-1'
+    'kvagregated'                   => '2.2.12-1',
 #    'norcom2kv'                     => '2.4.5-1',
 #    'kvalobs-log-mailer'            => '0.12-1',
-#    'kvalobs-model-populate'        => '0.3.6',
+    'kvalobs-model-populate'        => '0.3.6',
 #    'kvbufrd'                       => '2.5.14-1',
-#    'kvdataclt'                     => '2.7.6-1',
-#    'kvget-metadata'                => '2.8.12-1',
+    'kvdataclt'                     => '2.7.7-1',
+#    'kvget-metadata'                => '2.9.4-1'
 #    'kvqc2d'                        => '1.5.12-1',
-#    'kvsynopd'                      => '2.5.0-1',
-#    'kvbufrd'                       => '1.1.9-1'
+#    'kvsynopd'                      => '2.5.0-1'
 }
 
 
