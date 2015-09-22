@@ -15,11 +15,48 @@ directory '/etc/kvalobs' do
   mode '0755'
 end
 
+directory '/var/log/kvalobs' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
 template '/etc/kvalobs/kvalobs.conf' do
   source 'kvalobs/etc/kvalobs/kvalobs.erb'
   owner 'root'
   group 'root'
   mode '0644'
+end
+
+template '/etc/kvalobs/norcom2kv.conf' do
+  source 'kvalobs/etc/kvalobs/norcom2kv.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+directory '/var/lib/kvalobs/' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
+
+directory '/var/lib/kvalobs/synopreports' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
+directory '/var/lib/norcom2kv' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
+directory '/var/lib/norcom2kv/tmp' do
+  owner kvuser
+  group kvuser
+  mode '0775'
 end
 
 template '/etc/kvalobs/kv_ctl.conf' do
@@ -28,6 +65,7 @@ template '/etc/kvalobs/kv_ctl.conf' do
   group 'root'
   mode '0644'
 end
+
 
 execute 'kvstart' do
   command "sudo -u#{kvuser} /usr/bin/kvstart"

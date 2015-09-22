@@ -25,7 +25,7 @@ default['met-kvalobs']['kvalobsdb'] = {
 default['met-kvalobs']['packages'] = {
     'kvalobs'                       => '2.7.7-1',
     'kvagregated'                   => '2.2.12-1',
-#    'norcom2kv'                     => '2.4.5-1',
+    'norcom2kv'                     => '2.4.5-1',
 #    'kvalobs-log-mailer'            => '0.12-1',
     'kvalobs-model-populate'        => '0.3.6',
 #    'kvbufrd'                       => '2.5.14-1',
@@ -84,3 +84,5 @@ default['postgresql']['pg_hba'] = [
     }
 ]
 default['ulimit']['params']['kvalobs']['nofile'] = 8192 # open file limit for the kvalobs user
+
+default['met-server']['apt']['devel']=true

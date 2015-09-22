@@ -20,6 +20,12 @@
       [ "$status" -eq 0 ]
 }
 
+@test "norcom2kv is running" {
+      run pgrep norcom2kv
+      [ "$status" -eq 0 ]
+}
+
+
 @test "kvAgregated is running" {
       run pgrep kvAgregated
       [ "$status" -eq 0 ]
