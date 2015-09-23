@@ -21,6 +21,18 @@ directory '/var/log/kvalobs' do
   mode '0775'
 end
 
+directory '/var/log/kvalobs/kvsynop' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
+directory '/var/log/kvalobs/kvsynop/debug' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
 template '/etc/kvalobs/kvalobs.conf' do
   source 'kvalobs/etc/kvalobs/kvalobs.erb'
   owner 'root'
@@ -30,6 +42,13 @@ end
 
 template '/etc/kvalobs/norcom2kv.conf' do
   source 'kvalobs/etc/kvalobs/norcom2kv.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+template '/etc/kvalobs/kvsynopd.conf' do
+  source 'kvalobs/etc/kvalobs/kvsynopd.erb'
   owner 'root'
   group 'root'
   mode '0644'

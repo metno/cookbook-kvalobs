@@ -1,0 +1,41 @@
+#This is configuration file is used for kvcpp/test
+
+logdir="/var/log/kvalobs"
+debugdir="/var/log/kvalobs/kvsynop/debug"
+
+#loglevel and tracelevel: FATAL, ERROR, WARN, INFO, DEBUG, DEBUG1-6
+#defult loglevel=INFO og tracelevel=DEBUG
+loglevel=INFO
+tracelevel=DEBUG
+
+##############################################
+#Oppsett for murky
+database{
+   driver="/usr/lib/kvalobs/db/sqlite3driver.so"
+   dbconnect="/var/lib/kvsynopd/kvsynopd.sqlite"
+}
+
+corba{
+   #CORBA nameserver to be used.
+   nameserver="<%= node['met-kvalobs']['corba']['nameserver']['host']%>"
+
+   #Which kvalobs servers shall we receive observations from.
+   path=("<%= node['met-kvalobs']['corba']['nameserver']['path']%>")
+   #Where shall we register our services.
+   #Same as path, if not set.
+   kvpath=("<%= node['met-kvalobs']['corba']['nameserver']['path']%>")
+}
+################## END murky  #######################
+
+wmo_default{
+  #default values
+  copyto="/var/lib/kvsynopd/synop2norcom"
+  copy="true"
+  owner="AUTG"
+  #owner="KVAL"
+  list="99"
+  loglevel=9
+}
+
+
+@include /etc/kvalobs/kvsynop_stations.conf

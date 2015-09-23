@@ -7,9 +7,9 @@ ulimit -n 8192 &> /dev/null
 #Increase the max buffer size to omniorb from 2MB to 100MB
 export ORBgiopMaxMsgSize=104857600
 
-START_PROGS="kvQabased kvManagerd kvDataInputd kvServiced norcom2kv kvAgregated"
+START_PROGS="kvQabased kvManagerd kvDataInputd kvServiced kvsynopd norcom2kv kvAgregated"
 
-STOP_PROGS="kvAgregated norcom2kv kvServiced kvDataInputd kvQabased kvManagerd"
+STOP_PROGS="kvAgregated norcom2kv kvsynopd kvServiced kvDataInputd kvQabased kvManagerd"
 
 TIMEOUT=60
 KVUSER=kvalobs
