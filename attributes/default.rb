@@ -30,7 +30,7 @@ default['met-kvalobs']['packages'] = {
     'kvalobs-model-populate'        => '0.3.6',
 #    'kvbufrd'                       => '2.5.14-1',
     'kvdataclt'                     => '2.7.7-1',
-#    'kvget-metadata'                => '2.9.4-1'
+    'kvget-metadata'                => '2.9.5-1'
 #    'kvqc2d'                        => '1.5.12-1',
     'kvsynopd'                      => '2.5.0-1'
 }

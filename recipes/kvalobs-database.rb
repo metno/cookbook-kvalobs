@@ -44,3 +44,19 @@ execute 'setup kvalobs database' do
   command "#{psql} -f/usr/share/kvalobs/db/kvalobs_schema.sql"
   not_if "#{psql} -c 'SELECT * FROM param LIMIT 1'"
 end
+
+
+package 'kvget-metadata' do
+  version node['met-kvalobs']['packages']['kvget-metadata']
+end
+
+directory '/usr/share/kvalobs/metaget' do
+  owner 'kvalobs'
+  group 'kvalobs'
+  mode '0755'
+end
+
+execute 'populate database with metadata' do
+  command 'sudo -ukvalobs kvget-metadata'
+  not_if "sudo -ukvalobs psql -c \"select name from param where name='RR_12'\" | grep -q RR_12"
+end

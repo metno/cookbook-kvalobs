@@ -14,3 +14,8 @@
     run su postgres -c "psql --set=ON_ERROR_STOP=true kvalobs -c 'SELECT * FROM param LIMIT 1'"
     [ "$status" -eq 0 ]
 }
+
+@test "database contains metadata" {
+    result=`sudo -upostgres psql kvalobs -qtc 'select count(stationid) FROM checks'`
+    [ "$result" -ge 500 ]
+}
