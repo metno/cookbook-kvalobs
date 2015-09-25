@@ -47,6 +47,31 @@ template '/etc/kvalobs/norcom2kv.conf' do
   mode '0644'
 end
 
+template '/etc/kvalobs/kvbufrd.conf' do
+  source 'kvalobs/etc/kvalobs/kvbufrd.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+template '/etc/kvalobs/kvbufrconf.conf' do
+  source 'kvalobs/etc/kvalobs/kvbufrconf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+['kvsynop_kvbufr_common.conf','kvbufrd_precip.conf','kvbufrd_ship.conf','kvbufrd_sochi.conf','kvbufrd_bstations.conf'].each do |file|
+  template "/etc/kvalobs/#{file}" do
+     source 'kvalobs/etc/kvalobs/kvbufrd.include.erb'
+     owner 'root'
+     group 'root'
+     mode '0644'
+     not_if { File.exist?("/etc/kvalobs/#{file}" )}
+  end
+end
+
+
 template '/etc/kvalobs/kvsynopd.conf' do
   source 'kvalobs/etc/kvalobs/kvsynopd.erb'
   owner 'root'
@@ -66,6 +91,20 @@ directory '/var/lib/kvalobs/synopreports' do
   mode '0775'
 end
 
+directory '/var/lib/kvbufrd' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
+directory '/var/lib/kvbufrd/bufr2norcom' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
+
+
 directory '/var/lib/norcom2kv' do
   owner kvuser
   group kvuser
@@ -77,6 +116,26 @@ directory '/var/lib/norcom2kv/tmp' do
   group kvuser
   mode '0775'
 end
+
+directory '/var/lib/kvbufrd' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
+directory '/var/lib/kvbufrd/bufr2norcom' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
+directory '/var/lib/kvbufrd/bufr2norcom/tmp' do
+  owner kvuser
+  group kvuser
+  mode '0775'
+end
+
+
 
 template '/etc/kvalobs/kv_ctl.conf' do
   source 'kvalobs/etc/kvalobs/kv_ctl.erb'

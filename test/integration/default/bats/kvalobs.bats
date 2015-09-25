@@ -25,6 +25,10 @@
       [ "$status" -eq 0 ]
 }
 
+@test "kvbufrd is running" {
+      run pgrep kvbufrd
+      [ "$status" -eq 0 ]
+}
 @test "kvsynopd is running" {
       run pgrep kvsynopd
       [ "$status" -eq 0 ]

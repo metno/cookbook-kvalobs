@@ -1,0 +1,19 @@
+# This configuration file has 3 ways to define a key:
+# as number, string or as a list consisting of number and string.
+# It is recomended that one uses only one datatype, number or string in
+# the list.
+# key1 = number = integer or float
+# key2   = string = "                 "
+# key3   = list = ( "mystring", mynumber )
+#
+
+loglevel=INFO
+
+database{
+  #Which database driver shall be used.
+  dbdriver="pgdriver.so"
+
+  #The string to be used to connect to the database.
+  #ex. for a postgresql databse
+  dbconnect="user=<%= node['met-kvalobs']['stinfosysdb']['user']%> dbname=<%= node['met-kvalobs']['stinfosysdb']['dbname']%> password=<%= node['met-kvalobs']['stinfosysdb']['password']%> host=<%= node['met-kvalobs']['stinfosysdb']['host']%> port=<%= node['met-kvalobs']['stinfosysdb']['port']%>"
+}
